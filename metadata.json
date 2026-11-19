@@ -1,0 +1,8 @@
+{
+  "name": "NPA",
+  "description": "No Phones Around — Less Screen, More Connection. Kampanye edukasi interaktif dengan Doomscrolling Test, NPA Lab, Challenge Pledge, dan Digital Detox Timer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
