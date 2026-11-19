@@ -22,9 +22,6 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses > /dev/null || true
-
       - name: Decode debug keystore
         run: |
           if [ ! -f debug.keystore ] && [ -f debug.keystore.base64 ]; then
@@ -36,8 +33,15 @@ jobs:
         with:
           gradle-version: '9.3.1'
 
+      - name: Verify app module exists
+        run: |
+          if [ ! -d app ]; then
+            echo "ERROR: Folder 'app/' tidak ditemukan di repositori. Pastikan seluruh proyek (termasuk folder app/) ikut di-push."
+            exit 1
+          fi
+
       - name: Build Debug and Release APKs
-        run: gradle assembleDebug assembleRelease
+        run: gradle assembleDebug assembleRelease --stacktrace
 
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
